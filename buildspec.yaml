@@ -1,0 +1,20 @@
+version: 0.2
+
+phases: 
+  install:
+    runtime-versions:
+      python: 3.x
+  
+
+  pre_build:
+    commands:
+    - chmod +x install_terraform.sh configure_aws_profile.sh terraform_init.sh
+    # install terraform
+    - ./install_terraform.sh
+   
+    # configure profile for aws
+    - ./configure_aws_profile.sh
+
+  build:
+    commands:
+    - ./terraform_init.sh
